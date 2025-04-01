@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: golf
+  datasource:
+    url: jdbc:mysql://localhost:3306/golf_booking?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: mysqlroot
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    timeout: 60000
+
+server:
+  port: 8088
+
+jwt:
+  secret: golfBookingSecretKey
+  expiration: 86400000
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    org.example.golf: DEBUG
+    org.springframework.security: INFO
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/golf-app.log
